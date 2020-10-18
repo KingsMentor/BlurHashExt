@@ -32,16 +32,49 @@ dependencies {
 #### Step 1 - Initialize BlurHash
 
 `val blurHash: BlurHash = BlurHash(this, lruSize = 20)`
-`lruSize` determines the number of blur drawable that will be cache in memory. The default is 10
+
+`lruSize` determines the number of blur drawable that will be cache in memory. The default size is 10
 
 #### Step 2 - Using BlurHash
 
-**With Glide
+**With Glide**
 ```kotlin
     Glide.with(this).load(sampleResponse.img)
-    .withBlurHash(sampleResponse.blur, imageView, blurHash)
+    .withBlurHash(blurHashString, imageView, blurHash)
     {
         requestBuilder ->
         requestBuilder.into(imageView)
     }
  ```
+ 
+ 
+**With Picasso**
+```kotlin
+    Picasso.get().load(sampleResponse.img)
+    .withBlurHash(blurHashString, imageView, blurHash)
+    {
+        request ->
+        request.into(imageView)
+    }
+ ```
+ 
+ 
+**In an ImageView**
+This is useful for loading a placeholder before makeing a call to load the actual Image
+```kotlin
+        imageView.placeHolder(blurHashString, blurHash)
+        {
+            imageView.setImageURI(imgUrl)
+        }
+ ```
+ 
+ #### Step 3 - Finally, Disposing
+ 
+On `onDestroy`, do not forget to clean cached bitmap and tell  `BlurHash` to cancel any pending coroutine transaction. Here's how :
+
+```kotlin
+    override fun onDestroy() {
+        super.onDestroy()
+        blurHash.clean()
+    }
+```
