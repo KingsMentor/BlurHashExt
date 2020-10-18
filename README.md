@@ -16,3 +16,32 @@ In short, BlurHash takes an image, and gives you a short string (only 20-30 char
 <img src="Media/HowItWorks1.jpg" width="250">&nbsp;&nbsp;&nbsp;<img src="Media/HowItWorks2.jpg" width="250">
 
 Want to know all the gory technical details? Read the [algorithm description](Algorithm.md).
+
+
+### Download
+
+Gradle:
+```gradle
+dependencies {
+  implementation 'xyz.belvi:blurHash:1.0.0'
+}
+```
+
+### Usage
+
+#### Step 1 - Initialize BlurHash
+
+`val blurHash: BlurHash = BlurHash(this, lruSize = 20)`
+`lruSize` determines the number of blur drawable that will be cache in memory. The default is 10
+
+#### Step 2 - Using BlurHash
+
+**With Glide
+```kotlin
+    Glide.with(this).load(sampleResponse.img)
+    .withBlurHash(sampleResponse.blur, imageView, blurHash)
+    {
+        requestBuilder ->
+        requestBuilder.into(imageView)
+    }
+ ```
