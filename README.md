@@ -43,7 +43,7 @@ dependencies {
 
 **With Glide**
 ```kotlin
-    Glide.with(this).load(sampleResponse.img)
+    Glide.with(this).load(imgUrl)
     .withBlurHash(blurHashString, imageView, blurHash)
     {
         requestBuilder ->
@@ -54,7 +54,7 @@ dependencies {
  or
  
  ```kotlin
-    Glide.with(this).load(sampleResponse.img)
+    Glide.with(this).load(imgUrl)
     .withBlurHash(blurHashString, imageView, width = 200, height= 200, blurHash = blurHash)
     {
         requestBuilder ->
@@ -65,7 +65,7 @@ dependencies {
  
 **With Picasso**
 ```kotlin
-    Picasso.get().load(sampleResponse.img)
+    Picasso.get().load(imgUrl)
     .withBlurHash(blurHashString, imageView, blurHash)
     {
         request ->
@@ -76,7 +76,7 @@ dependencies {
  or
  
  ```kotlin
-    Picasso.get().load(sampleResponse.img)
+    Picasso.get().load(imgUrl)
     .withBlurHash(blurHashString, width = 200, height= 200, blurHash = blurHash)
     {
         request ->
