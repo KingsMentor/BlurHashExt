@@ -10,7 +10,12 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 const val LUR_SIZE = 10
-class BlurHash(private var context: Context, lruSize: Int = LUR_SIZE) {
+
+class BlurHash(
+    private var context: Context,
+    lruSize: Int = LUR_SIZE,
+    private var punch: Float = 1F
+) {
     private var data: LruCache<String, BitmapDrawable> = LruCache(lruSize)
     private val scope = CoroutineScope(Dispatchers.Main)
 
@@ -33,6 +38,7 @@ class BlurHash(private var context: Context, lruSize: Int = LUR_SIZE) {
                         blurString,
                         width,
                         height,
+                        punch,
                         useCache = false
                     )
                     blurBitmap = BitmapDrawable(

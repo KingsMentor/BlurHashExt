@@ -46,9 +46,34 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
-
-
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }
+
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'blurHash'
+
+    publishedGroupId = 'xyz.belvi.blurHash'
+    libraryName = 'blurHash'
+    artifact = 'blurHash'
+
+    libraryDescription = 'Kotlin extensions of BlurHash for ImageView, Glide and Piccasso optimized for Android.'
+
+    siteUrl = 'https://github.com/KingsMentor/BlurHashExt'
+    gitUrl = 'https://github.com/KingsMentor/BlurHashExt'
+
+    libraryVersion = '1.0.0'
+
+    developerId = 'kingsmentor'
+    developerName = 'Nosakhare Belvi'
+    developerEmail = 'nosakharebelvi@gmail.com'
+
+    licenseName = 'MIT License'
+    licenseUrl = 'https://github.com/KingsMentor/BlurHashExt/blob/master/LICENSE'
+    allLicenses = ["MIT License"]
+}
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
