@@ -1,5 +1,5 @@
 # BlurHashExt
-kt extensions of [BlurHash](https://blurha.sh/) for Glide and Piccasso.
+kt extensions of [BlurHash](https://blurha.sh/) for Glide and Picasso.
 
 Based Blurhash implementation is from https://github.com/woltapp/blurhash. 
 
