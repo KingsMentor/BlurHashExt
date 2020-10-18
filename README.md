@@ -9,7 +9,7 @@ Based Blurhash implementation is from https://github.com/woltapp/blurhash.
 
 This library work is focus on optimizing it for Android for faster placehold images.
 
-![BlurHash Sample](https://github.com/KingsMentor/phrase/blob/master/documentation/imgs/phrase.gif)
+![BlurHash Sample](https://github.com/KingsMentor/BlurHashExt/blob/master/Media/sample.gif)
 
 ### How BlurHash works?
 
