@@ -60,6 +60,7 @@ dependencies {
  
  
 **In an ImageView**
+
 This is useful for loading a placeholder before makeing a call to load the actual Image
 ```kotlin
         imageView.placeHolder(blurHashString, blurHash)
