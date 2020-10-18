@@ -7,7 +7,7 @@ kt extensions of [BlurHash](https://blurha.sh/) for Glide and Picasso.
 
 Based Blurhash implementation is from https://github.com/woltapp/blurhash. 
 
-This library work is focus on optimizing it on Android for faster placehold images.
+This library work is focus on optimizing it for Android usage.
 
 ![BlurHash Sample](https://github.com/KingsMentor/BlurHashExt/blob/master/Media/sample.gif)
 
