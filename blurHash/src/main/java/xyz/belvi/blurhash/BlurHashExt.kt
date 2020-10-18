@@ -8,7 +8,7 @@ import com.bumptech.glide.RequestBuilder
 import com.squareup.picasso.RequestCreator
 
 // FOR GLIDE
-fun RequestBuilder<Drawable>.withBlurHash(
+fun RequestBuilder<Drawable>.blurPlaceHolder(
     blurString: String,
     width: Int = 0,
     height: Int = 0,
@@ -17,14 +17,14 @@ fun RequestBuilder<Drawable>.withBlurHash(
 ) {
     if (width != 0 && height != 0) {
         blurHash.execute(blurString, width, height) { drawable ->
-            this@withBlurHash.placeholder(drawable)
-            response(this@withBlurHash)
+            this@blurPlaceHolder.placeholder(drawable)
+            response(this@blurPlaceHolder)
         }
     }
 }
 
 @SuppressLint("CheckResult")
-fun RequestBuilder<Drawable>.withBlurHash(
+fun RequestBuilder<Drawable>.blurPlaceHolder(
     blurString: String,
     targetView: View,
     blurHash: BlurHash,
@@ -33,15 +33,15 @@ fun RequestBuilder<Drawable>.withBlurHash(
     targetView.post {
         if (targetView.width != 0 && targetView.height != 0) {
             blurHash.execute(blurString, targetView.width, targetView.height) { drawable ->
-                this@withBlurHash.placeholder(drawable)
-                response(this@withBlurHash)
+                this@blurPlaceHolder.placeholder(drawable)
+                response(this@blurPlaceHolder)
             }
         }
     }
 }
 
 // FOR PICASSO
-fun RequestCreator.withBlurHash(
+fun RequestCreator.blurPlaceHolder(
     blurString: String,
     width: Int = 0,
     height: Int = 0,
@@ -50,14 +50,14 @@ fun RequestCreator.withBlurHash(
 ) {
     if (width != 0 && height != 0) {
         blurHash.execute(blurString, width, height) { drawable ->
-            this@withBlurHash.placeholder(drawable)
-            response(this@withBlurHash)
+            this@blurPlaceHolder.placeholder(drawable)
+            response(this@blurPlaceHolder)
         }
     }
 }
 
 @SuppressLint("CheckResult")
-fun RequestCreator.withBlurHash(
+fun RequestCreator.blurPlaceHolder(
     blurString: String,
     targetView: View,
     blurHash: BlurHash,
@@ -66,8 +66,8 @@ fun RequestCreator.withBlurHash(
     targetView.post {
         if (targetView.width != 0 && targetView.height != 0) {
             blurHash.execute(blurString, targetView.width, targetView.height) { drawable ->
-                this@withBlurHash.placeholder(drawable)
-                response(this@withBlurHash)
+                this@blurPlaceHolder.placeholder(drawable)
+                response(this@blurPlaceHolder)
             }
         }
     }
