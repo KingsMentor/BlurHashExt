@@ -35,7 +35,7 @@ dependencies {
 
 #### Step 1 - Initialize BlurHash
 
-`val blurHash: BlurHash = BlurHash(this, lruSize = 20)`
+`val blurHash: BlurHash = BlurHash(this, lruSize = 20, punch = 1F)`
 
 `lruSize` determines the number of blur drawable that will be cache in memory. The default size is 10
 
