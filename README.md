@@ -111,3 +111,11 @@ It is a parameter that adjusts the contrast on the decoded image. 1 means normal
 and larger values will make it stronger. This is basically a design parameter, which lets you adjust the look.
 
 Technically, what it does is scale the AC components up or down.
+
+
+## Contributing
+
+Contributions are welcomed even to the [blurHash base library](https://github.com/woltapp/blurhash/)! 
+
+You can also contribute by reporting issues or helping to resolve issues listed here [issue tracker](https://github.com/kingsmentor/blurhash/issues) or 
+file a pull request.
