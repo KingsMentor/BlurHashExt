@@ -75,12 +75,17 @@ fun RequestCreator.withBlurHash(
 
 // FOR IMAGEVIEW
 
-fun ImageView.placeHolder(blurString: String, blurHash: BlurHash) {
+fun ImageView.placeHolder(
+    blurString: String,
+    blurHash: BlurHash,
+    response: (drawable: Drawable) -> Unit
+) {
     this.post {
         if (width != 0 && height != 0) {
             blurHash.execute(blurString, width, height) { drawable ->
                 if (getDrawable() != null)
                     setImageDrawable(drawable)
+                response(drawable)
             }
         }
     }

@@ -10,17 +10,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fields.view.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import xyz.belvi.blurhash.BlurHash
+import xyz.belvi.blurhash.placeHolder
 import xyz.belvi.blurhash.withBlurHash
 
 class MainActivity : AppCompatActivity() {
 
-    val blurHash: BlurHash = BlurHash(this, 20)
+    val blurHash: BlurHash = BlurHash(this, lruSize = 20)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -63,6 +65,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
 
     override fun onDestroy() {
         super.onDestroy()
