@@ -12,9 +12,15 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fields.view.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import xyz.belvi.blurhash.BlurHash
 import xyz.belvi.blurhash.withBlurHash
 
 class MainActivity : AppCompatActivity() {
+
+    val blurHash: BlurHash = BlurHash(this, 20)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -28,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         return Gson().fromJson(response, object : TypeToken<List<SampleResponse>>() {}.type)
     }
 
-    class SampleRecyclerAdapter(private val response: List<SampleResponse>) :
+    inner class SampleRecyclerAdapter(private val response: List<SampleResponse>) :
         RecyclerView.Adapter<SampleRecyclerHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SampleRecyclerHolder {
             return SampleRecyclerHolder(
@@ -45,17 +51,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    class SampleRecyclerHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class SampleRecyclerHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindView(sampleResponse: SampleResponse) {
             with(itemView) {
                 textView.text = sampleResponse.blur
-                imageView.post {
-                    Glide.with(this).load(sampleResponse.img)
-                        .withBlurHash(sampleResponse.blur, imageView)
-                        .into(imageView)
-                }
+                Glide.with(this).load(sampleResponse.img)
+                    .withBlurHash(sampleResponse.blur, imageView, blurHash) { requestBuilder ->
+                        requestBuilder.into(imageView)
+                    }
 
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        blurHash.clean()
     }
 }

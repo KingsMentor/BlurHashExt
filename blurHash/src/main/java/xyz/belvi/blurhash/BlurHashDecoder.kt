@@ -31,7 +31,13 @@ object BlurHashDecoder {
      *                 if the cache does not exist yet it will be created and populated with new calculations.
      *                 By default it is true.
      */
-    fun decode(blurHash: String?, width: Int, height: Int, punch: Float = 1f, useCache: Boolean = true): Bitmap? {
+    suspend fun decode(
+        blurHash: String?,
+        width: Int,
+        height: Int,
+        punch: Float = 1f,
+        useCache: Boolean = true
+    ): Bitmap? {
         if (blurHash == null || blurHash.length < 6) {
             return null
         }
@@ -88,19 +94,19 @@ object BlurHashDecoder {
         val g = (value / 19) % 19
         val b = value % 19
         return floatArrayOf(
-                signedPow2((r - 9) / 9.0f) * maxAc,
-                signedPow2((g - 9) / 9.0f) * maxAc,
-                signedPow2((b - 9) / 9.0f) * maxAc
+            signedPow2((r - 9) / 9.0f) * maxAc,
+            signedPow2((g - 9) / 9.0f) * maxAc,
+            signedPow2((b - 9) / 9.0f) * maxAc
         )
     }
 
     private fun signedPow2(value: Float) = value.pow(2f).withSign(value)
 
     private fun composeBitmap(
-            width: Int, height: Int,
-            numCompX: Int, numCompY: Int,
-            colors: Array<FloatArray>,
-            useCache: Boolean
+        width: Int, height: Int,
+        numCompX: Int, numCompY: Int,
+        colors: Array<FloatArray>,
+        useCache: Boolean
     ): Bitmap {
         // use an array for better performance when writing pixel colors
         val imageArray = IntArray(width * height)
@@ -124,7 +130,8 @@ object BlurHashDecoder {
                         b += color[2] * basis
                     }
                 }
-                imageArray[x + width * y] = Color.rgb(linearToSrgb(r), linearToSrgb(g), linearToSrgb(b))
+                imageArray[x + width * y] =
+                    Color.rgb(linearToSrgb(r), linearToSrgb(g), linearToSrgb(b))
             }
         }
         return Bitmap.createBitmap(imageArray, width, height, Bitmap.Config.ARGB_8888)
@@ -151,11 +158,11 @@ object BlurHashDecoder {
     }
 
     private fun DoubleArray.getCos(
-            calculate: Boolean,
-            x: Int,
-            numComp: Int,
-            y: Int,
-            size: Int
+        calculate: Boolean,
+        x: Int,
+        numComp: Int,
+        y: Int,
+        size: Int
     ): Double {
         if (calculate) {
             this[x + numComp * y] = cos(Math.PI * y * x / size)
@@ -173,13 +180,12 @@ object BlurHashDecoder {
     }
 
     private val charMap = listOf(
-            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G',
-            'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
-            'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',
-            'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '#', '$', '%', '*', '+', ',',
-            '-', '.', ':', ';', '=', '?', '@', '[', ']', '^', '_', '{', '|', '}', '~'
+        '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G',
+        'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
+        'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',
+        'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '#', '$', '%', '*', '+', ',',
+        '-', '.', ':', ';', '=', '?', '@', '[', ']', '^', '_', '{', '|', '}', '~'
     )
-            .mapIndexed { i, c -> c to i }
-            .toMap()
-
+        .mapIndexed { i, c -> c to i }
+        .toMap()
 }
