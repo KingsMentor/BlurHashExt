@@ -1,4 +1,8 @@
 # BlurHashExt
+
+[ ![Download](https://api.bintray.com/packages/kingsmentor/maven/blurHash/images/download.svg) ](https://bintray.com/kingsmentor/maven/blurHash/_latestVersion)
+[![HitCount](http://hits.dwyl.com/kingsmentor/blurHash.svg)](http://hits.dwyl.com/kingsmentor/blurHash)
+
 kt extensions of [BlurHash](https://blurha.sh/) for Glide and Picasso.
 
 Based Blurhash implementation is from https://github.com/woltapp/blurhash. 
@@ -79,3 +83,10 @@ On `onDestroy`, do not forget to clean cached bitmap and tell  `BlurHash` to can
         blurHash.clean()
     }
 ```
+
+### What is the `punch` parameter in some of these implementations?
+
+It is a parameter that adjusts the contrast on the decoded image. 1 means normal, smaller values will make the effect more subtle,
+and larger values will make it stronger. This is basically a design parameter, which lets you adjust the look.
+
+Technically, what it does is scale the AC components up or down.
