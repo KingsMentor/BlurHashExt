@@ -44,7 +44,7 @@ dependencies {
 **With Glide**
 ```kotlin
     Glide.with(this).load(imgUrl)
-    .withBlurHash(blurHashString, imageView, blurHash)
+    .blurPlaceHolder(blurHashString, imageView, blurHash)
     {
         requestBuilder ->
         requestBuilder.into(imageView)
@@ -55,7 +55,7 @@ dependencies {
  
  ```kotlin
     Glide.with(this).load(imgUrl)
-    .withBlurHash(blurHashString, imageView, width = 200, height= 200, blurHash = blurHash)
+    .blurPlaceHolder(blurHashString, imageView, width = 200, height= 200, blurHash = blurHash)
     {
         requestBuilder ->
         requestBuilder.into(imageView)
@@ -66,7 +66,7 @@ dependencies {
 **With Picasso**
 ```kotlin
     Picasso.get().load(imgUrl)
-    .withBlurHash(blurHashString, imageView, blurHash)
+    .blurPlaceHolder(blurHashString, imageView, blurHash)
     {
         request ->
         request.into(imageView)
@@ -77,7 +77,7 @@ dependencies {
  
  ```kotlin
     Picasso.get().load(imgUrl)
-    .withBlurHash(blurHashString, width = 200, height= 200, blurHash = blurHash)
+    .blurPlaceHolder(blurHashString, width = 200, height= 200, blurHash = blurHash)
     {
         request ->
         request.into(imageView)
