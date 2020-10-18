@@ -51,6 +51,17 @@ dependencies {
     }
  ```
  
+ or
+ 
+ ```kotlin
+    Glide.with(this).load(sampleResponse.img)
+    .withBlurHash(blurHashString, imageView, width = 200, height= 200, blurHash = blurHash)
+    {
+        requestBuilder ->
+        requestBuilder.into(imageView)
+    }
+ ```
+ 
  
 **With Picasso**
 ```kotlin
@@ -62,6 +73,16 @@ dependencies {
     }
  ```
  
+ or
+ 
+ ```kotlin
+    Picasso.get().load(sampleResponse.img)
+    .withBlurHash(blurHashString, width = 200, height= 200, blurHash = blurHash)
+    {
+        request ->
+        request.into(imageView)
+    }
+ ```
  
 **In an ImageView**
 
