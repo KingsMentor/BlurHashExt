@@ -1,0 +1,3 @@
+include ':BlurHash'
+include ':app'
+rootProject.name = "BlurHashSample"
