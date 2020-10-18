@@ -115,7 +115,7 @@ Technically, what it does is scale the AC components up or down.
 
 ## Contributing
 
-Contributions are welcomed even to the [blurHash base library](https://github.com/woltapp/blurhash/)! 
+Contributions are welcomed even to [blurHash base library](https://github.com/woltapp/blurhash/)! 
 
 You can also contribute by reporting issues or helping to resolve issues listed here [issue tracker](https://github.com/kingsmentor/blurhash/issues) or 
 file a pull request.
