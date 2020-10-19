@@ -3,7 +3,7 @@
 [ ![Download](https://api.bintray.com/packages/kingsmentor/maven/blurHash/images/download.svg) ](https://bintray.com/kingsmentor/maven/blurHash/_latestVersion)
 [![HitCount](http://hits.dwyl.com/kingsmentor/blurHash.svg)](http://hits.dwyl.com/kingsmentor/blurHash)
 
-kt extensions of [BlurHash](https://blurha.sh/) for Glide and Picasso.
+Kotlin extensions of [BlurHash](https://blurha.sh/) on Android ImageView, Glide, and Picasso.
 
 Based Blurhash implementation is from https://github.com/woltapp/blurhash. 
 
