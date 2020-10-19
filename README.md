@@ -56,7 +56,7 @@ dependencies {
  
  ```kotlin
     Glide.with(this).load(imgUrl)
-    .blurPlaceHolder(blurHashString, imageView, width = 200, height= 200, blurHash = blurHash)
+    .blurPlaceHolder(blurHashString, width = 200, height= 200, blurHash = blurHash)
     {
         requestBuilder ->
         requestBuilder.into(imageView)
