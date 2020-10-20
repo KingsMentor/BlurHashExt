@@ -1,7 +1,7 @@
 # BlurHashExt
 
 [ ![Download](https://api.bintray.com/packages/kingsmentor/maven/blurHash/images/download.svg) ](https://bintray.com/kingsmentor/maven/blurHash/_latestVersion)
-[![HitCount](http://hits.dwyl.com/kingmentor/blurHash/blurHash.svg)](http://hits.dwyl.com/kingmentor/blurHash/blurHash)
+[![HitCount](http://hits.dwyl.com/kingmentor/blurHash.svg)](http://hits.dwyl.com/kingmentor/blurHash)
 
 Kotlin extensions of [BlurHash](https://blurha.sh/) on Android ImageView, Glide, and Picasso.
 
