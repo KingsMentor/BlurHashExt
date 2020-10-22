@@ -65,7 +65,7 @@ ext {
     siteUrl = 'https://github.com/KingsMentor/BlurHashExt'
     gitUrl = 'https://github.com/KingsMentor/BlurHashExt'
 
-    libraryVersion = '1.0.1'
+    libraryVersion = '1.0.2'
 
     developerId = 'kingsmentor'
     developerName = 'Nosakhare Belvi'
