@@ -7,7 +7,7 @@ Kotlin extensions of [BlurHash](https://blurha.sh/) on Android ImageView, Glide,
 
 Based Blurhash implementation is from https://github.com/woltapp/blurhash. 
 
-This library work is focus on optimizing it for Android usage.
+This implementation focus on optimizing BlurHash for Android development.
 
 ![BlurHash Sample](https://github.com/KingsMentor/BlurHashExt/blob/master/Media/sample.gif)
 
