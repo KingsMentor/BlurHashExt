@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.RequestBuilder
+import com.bumptech.glide.request.RequestOptions
 import com.squareup.picasso.RequestCreator
 
 // FOR GLIDE
@@ -35,6 +36,23 @@ fun RequestBuilder<Drawable>.blurPlaceHolder(
             blurHash.execute(blurString, targetView.width, targetView.height) { drawable ->
                 this@blurPlaceHolder.placeholder(drawable)
                 response(this@blurPlaceHolder)
+            }
+        }
+    }
+}
+
+@SuppressLint("CheckResult")
+fun RequestOptions.blurPlaceHolderOf(
+    blurString: String,
+    targetView: View,
+    blurHash: BlurHash,
+    response: (requestOptions: RequestOptions) -> Unit
+) {
+    targetView.post {
+        if (targetView.width != 0 && targetView.height != 0) {
+            blurHash.execute(blurString, targetView.width, targetView.height) { drawable ->
+                this@blurPlaceHolderOf.placeholder(drawable)
+                response(this@blurPlaceHolderOf)
             }
         }
     }

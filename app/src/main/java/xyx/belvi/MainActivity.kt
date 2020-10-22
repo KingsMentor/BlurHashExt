@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.bumptech.glide.request.transition.DrawableCrossFadeFactory
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_main.*
@@ -51,8 +53,10 @@ class MainActivity : AppCompatActivity() {
     inner class SampleRecyclerHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindView(sampleResponse: SampleResponse) {
             with(itemView) {
+                val factory = DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(true).build()
                 textView.text = sampleResponse.blur
                 Glide.with(this).load(sampleResponse.img)
+                    .transition(DrawableTransitionOptions.withCrossFade(factory))
                     .blurPlaceHolder(sampleResponse.blur, imageView, blurHash) { requestBuilder ->
                         requestBuilder.into(imageView)
                     }
