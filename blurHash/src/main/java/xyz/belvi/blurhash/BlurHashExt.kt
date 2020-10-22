@@ -41,6 +41,22 @@ fun RequestBuilder<Drawable>.blurPlaceHolder(
     }
 }
 
+fun RequestOptions.blurPlaceHolderOf(
+    blurString: String,
+    width: Int = 0,
+    height: Int = 0,
+    blurHash: BlurHash,
+    response: (requestOptions: RequestOptions) -> Unit
+) {
+    if (width != 0 && height != 0) {
+        blurHash.execute(blurString, width, height) { drawable ->
+            this@blurPlaceHolderOf.placeholder(drawable)
+            response(this@blurPlaceHolderOf)
+        }
+    }
+}
+
+
 @SuppressLint("CheckResult")
 fun RequestOptions.blurPlaceHolderOf(
     blurString: String,
