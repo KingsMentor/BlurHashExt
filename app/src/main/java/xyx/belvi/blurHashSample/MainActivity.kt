@@ -1,21 +1,24 @@
-package xyx.belvi
+package xyx.belvi.blurHashSample
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.bumptech.glide.request.transition.DrawableCrossFadeFactory
+import coil.ImageLoader
+import coil.load
+import coil.request.ImageRequest
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fields.view.*
 import xyz.belvi.blurhash.BlurHash
+import xyz.belvi.blurhash.blurHashDrawable
 import xyz.belvi.blurhash.blurPlaceHolder
+import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
 
@@ -53,18 +56,19 @@ class MainActivity : AppCompatActivity() {
     inner class SampleRecyclerHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindView(sampleResponse: SampleResponse) {
             with(itemView) {
-                val factory = DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(true).build()
                 textView.text = sampleResponse.blur
-                Glide.with(this).load(sampleResponse.img)
-                    .transition(DrawableTransitionOptions.withCrossFade(factory))
-                    .blurPlaceHolder(sampleResponse.blur, imageView, blurHash) { requestBuilder ->
-                        requestBuilder.into(imageView)
+                ImageRequest.Builder(context)
+                    .data("https://www.example.com/image.jpg")
+                    .target { drawable ->
+                        // Handle the result.
                     }
+                    .placeholder(R.drawable.ic_launcher_background)
+                    .error(R.drawable.ic_launcher_background)
+                    .build()
 
             }
         }
     }
-
 
     override fun onDestroy() {
         super.onDestroy()

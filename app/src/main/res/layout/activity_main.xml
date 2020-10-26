@@ -6,6 +6,6 @@
     android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".blurHashSample.MainActivity">
 
 </androidx.recyclerview.widget.RecyclerView>

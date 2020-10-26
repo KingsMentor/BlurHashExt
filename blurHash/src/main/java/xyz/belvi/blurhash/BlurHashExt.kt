@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageView
+import coil.request.ImageRequest
 import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.request.RequestOptions
 import com.squareup.picasso.RequestCreator
@@ -24,7 +25,6 @@ fun RequestBuilder<Drawable>.blurPlaceHolder(
     }
 }
 
-@SuppressLint("CheckResult")
 fun RequestBuilder<Drawable>.blurPlaceHolder(
     blurString: String,
     targetView: View,
@@ -32,12 +32,7 @@ fun RequestBuilder<Drawable>.blurPlaceHolder(
     response: (requestBuilder: RequestBuilder<Drawable>) -> Unit
 ) {
     targetView.post {
-        if (targetView.width != 0 && targetView.height != 0) {
-            blurHash.execute(blurString, targetView.width, targetView.height) { drawable ->
-                this@blurPlaceHolder.placeholder(drawable)
-                response(this@blurPlaceHolder)
-            }
-        }
+        blurPlaceHolder(blurString, targetView.width, targetView.height, blurHash, response)
     }
 }
 
@@ -56,8 +51,6 @@ fun RequestOptions.blurPlaceHolderOf(
     }
 }
 
-
-@SuppressLint("CheckResult")
 fun RequestOptions.blurPlaceHolderOf(
     blurString: String,
     targetView: View,
@@ -65,12 +58,36 @@ fun RequestOptions.blurPlaceHolderOf(
     response: (requestOptions: RequestOptions) -> Unit
 ) {
     targetView.post {
-        if (targetView.width != 0 && targetView.height != 0) {
-            blurHash.execute(blurString, targetView.width, targetView.height) { drawable ->
-                this@blurPlaceHolderOf.placeholder(drawable)
-                response(this@blurPlaceHolderOf)
-            }
+        blurPlaceHolderOf(blurString, targetView.width, targetView.height, blurHash, response)
+    }
+}
+
+// FOR COIL
+
+fun ImageRequest.Builder.blurPlaceHolder(
+    blurString: String,
+    width: Int = 0,
+    height: Int = 0,
+    blurHash: BlurHash,
+    response: (requestBuilder: ImageRequest.Builder) -> Unit
+) {
+    if (width != 0 && height != 0) {
+        blurHash.execute(blurString, width, height) { drawable ->
+            this@blurPlaceHolder.placeholder(drawable)
+            response(this@blurPlaceHolder)
         }
+    }
+}
+
+@SuppressLint("CheckResult")
+fun ImageRequest.Builder.blurPlaceHolder(
+    blurString: String,
+    targetView: View,
+    blurHash: BlurHash,
+    response: (requestBuilder: ImageRequest.Builder) -> Unit
+) {
+    targetView.post {
+        blurPlaceHolder(blurString, targetView.width, targetView.height, blurHash, response)
     }
 }
 
@@ -98,18 +115,13 @@ fun RequestCreator.blurPlaceHolder(
     response: (requestBuilder: RequestCreator) -> Unit
 ) {
     targetView.post {
-        if (targetView.width != 0 && targetView.height != 0) {
-            blurHash.execute(blurString, targetView.width, targetView.height) { drawable ->
-                this@blurPlaceHolder.placeholder(drawable)
-                response(this@blurPlaceHolder)
-            }
-        }
+        blurPlaceHolder(blurString, targetView.width, targetView.height, blurHash, response)
     }
 }
 
 // FOR IMAGEVIEW
 
-fun ImageView.placeHolder(
+fun ImageView.blurPlaceHolder(
     blurString: String,
     blurHash: BlurHash,
     response: (drawable: Drawable) -> Unit
@@ -121,6 +133,32 @@ fun ImageView.placeHolder(
                     setImageDrawable(drawable)
                 response(drawable)
             }
+        }
+    }
+}
+
+// GENERIC USAGE
+fun blurHashDrawable(
+    blurString: String,
+    targetView: View,
+    blurHash: BlurHash,
+    response: (drawable: Drawable) -> Unit
+) {
+    targetView.post {
+        blurHashDrawable(blurString, targetView.width, targetView.height, blurHash, response)
+    }
+}
+
+fun blurHashDrawable(
+    blurString: String,
+    width: Int = 0,
+    height: Int = 0,
+    blurHash: BlurHash,
+    response: (drawable: Drawable) -> Unit
+) {
+    if (width != 0 && height != 0) {
+        blurHash.execute(blurString, width, height) { drawable ->
+            response(drawable)
         }
     }
 }
