@@ -27,7 +27,7 @@ Want to know all the gory technical details? Read the [algorithm description](Al
 Gradle:
 ```gradle
 dependencies {
-  implementation 'xyz.belvi:blurHash:blurHash:1.0.3'
+  implementation 'xyz.belvi:blurHash:blurHash:1.0.4'
 }
 ```
 
@@ -92,6 +92,29 @@ This is useful for loading a placeholder before makeing a call to load the actua
         {
             imageView.setImageURI(imgUrl)
         }
+ ```
+ 
+  
+**Just interested in getting the blurHash Drawabe ?**
+
+This is useful for loading a placeholder before makeing a call to load the actual Image
+
+```kotlin
+    blurHashDrawable(blurHashString, imageView, blurHash)
+    {
+        drawable ->
+        // do something with drawable
+    }
+ ```
+ 
+ or
+ 
+ ```kotlin
+    blurHashDrawable(blurHashString, width = 200, height = 200,  blurHash)
+    {
+        drawable ->
+        // do something with drawable
+    }
  ```
  
  #### Step 3 - Finally, Disposing
