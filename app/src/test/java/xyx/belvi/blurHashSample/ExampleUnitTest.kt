@@ -1,4 +1,4 @@
-package xyx.belvi
+package xyx.belvi.blurHashSample
 
 import org.junit.Test
 
