@@ -10,10 +10,14 @@ This implementation focus on optimizing BlurHash for Android development.
 
 ![BlurHash Sample](https://github.com/KingsMentor/BlurHashExt/blob/master/Media/sample.gif)
 
+
+
 ### How BlurHash works?
 
 
 In short, BlurHash takes an image, and gives you a short string (only 20-30 characters!) that represents the placeholder for this image. You do this on the backend of your service, and store the string along with the image. When you send data to your client, you send both the URL to the image, and the BlurHash string. Your client then takes the string, and decodes it into an image that it shows while the real image is loading over the network. The string is short enough that it comfortably fits into whatever data format you use. For instance, it can easily be added as a field in a JSON object.
+
+BlurHashExt implements BlurHash Algorithm(request to generate bitmap from the blurHash and convert to drawable) using coroutine. This allows image processing to happen on the IO thread. Call `blurHash.cleam()` to dispose any pending job operation and other cache bitmap. `BlurHash` uses LRU-Cache to cache drawable bitmap in memory. `lruSize` can be defined when initializing `BlurHash`. 
 
 ### In summary:
 
@@ -124,7 +128,7 @@ This is useful for loading a placeholder before makeing a call to load the actua
   
 **Just interested in getting the blurHash Drawabe ?**
 
-This is useful for loading a placeholder before makeing a call to load the actual Image
+This is useful for getting blurHasdDrablw asynchronously.
 
 ```kotlin
     blurHashDrawable(blurHashString, imageView, blurHash)
