@@ -84,6 +84,33 @@ dependencies {
     }
  ```
  
+  
+**With Coil**
+```kotlin
+val request = ImageRequest.Builder(context)
+    .data("https://www.example.com/image.jpg")
+    .target { drawable ->
+        // Handle the result.
+        
+    }.blurPlaceHolder(blurHashString, imageView, blurHash = blurHash)
+    {coilImageBuilder ->
+      coilImageBuilder.build()
+    }
+ ```
+ 
+ or
+ 
+ ```kotlin
+imageView.load("https://www.example.com/image.jpg") {
+    crossfade(true)
+    blurPlaceHolder(blurHashString, imageView, blurHash = blurHash)
+    {coilImageBuilder ->
+      coilImageBuilder.build()
+    }
+    transformations(CircleCropTransformation())
+}
+ ```
+ 
 **In an ImageView**
 
 This is useful for loading a placeholder before makeing a call to load the actual Image
