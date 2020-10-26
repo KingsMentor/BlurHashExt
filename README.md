@@ -103,7 +103,7 @@ This is useful for loading a placeholder before makeing a call to load the actua
     blurHashDrawable(blurHashString, imageView, blurHash)
     {
         drawable ->
-        // do something with drawable
+        // do something with drawable or use whatver imageloading library you want. blurDrawable is ready to be used as error image or placeholder
     }
  ```
  
@@ -113,7 +113,7 @@ This is useful for loading a placeholder before makeing a call to load the actua
     blurHashDrawable(blurHashString, width = 200, height = 200,  blurHash)
     {
         drawable ->
-        // do something with drawable
+        // do something with drawable or use whatver imageloading library you want. blurDrawable is ready to be used as error image or placeholder
     }
  ```
  
