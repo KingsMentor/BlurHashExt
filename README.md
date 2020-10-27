@@ -31,7 +31,7 @@ Want to know all the gory technical details? Read the [algorithm description](Al
 Gradle:
 ```gradle
 dependencies {
-  implementation 'xyz.belvi:blurHash:blurHash:1.0.4'
+  implementation 'xyz.belvi.blurHash:blurHash:1.0.4'
 }
 ```
 
